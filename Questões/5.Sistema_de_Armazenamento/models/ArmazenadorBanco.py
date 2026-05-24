@@ -2,5 +2,5 @@ from models.armazenador import Armazenador
 
 
 class ArmazenadorBanco(Armazenador):
-    def salvar(dado):
-        print(f"({dado}) Salvo no Banco)")
+    def salvar(self):
+        print(f"({self.dado}) Salvo no Banco)")
