@@ -1,3 +1,7 @@
 class ArmazenadorNuvem:
-    def salvar(dado) -> None:
-        print(f"({dado}) Salvo na Nuvem)")
+    def __init__(self,dado):
+        self.dado = dado
+
+    
+    def salvar(self) -> None:
+        print(f"({self.dado}) Salvo na Nuvem)")
