@@ -1,4 +1,4 @@
-from armazenador import Armazenador
+from models.armazenador import Armazenador
 
 class ArmazenadorArquivo(Armazenador):
     def salvar(dado):
