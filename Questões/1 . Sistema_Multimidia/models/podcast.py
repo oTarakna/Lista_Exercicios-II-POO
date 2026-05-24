@@ -1,4 +1,4 @@
-from midia import Midia
+from models.midia import Midia
 
 
 
