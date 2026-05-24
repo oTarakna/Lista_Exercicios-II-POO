@@ -1,4 +1,4 @@
-from notificador import Notificador
+from models.notificador import Notificador
 
 class NotificadorSMS(Notificador):
     def notificar(self, mensagem):
