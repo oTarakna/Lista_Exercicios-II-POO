@@ -1,23 +1,106 @@
-from midia import Midia
-from repository.plataforma import Plataforma
-from podcast import Podcast
-from textonarrado import TextoNarrado
-from video import Video
+from ui.menu import mostrarMenu
 
-minhaplat = Plataforma("Sosos")
-
-video = Video("Em busca da casa Automatica EP 43","30min","1080")
-
-podcast = Podcast("PodZé", "47", "José Menezes")
-
-textonarrado =  TextoNarrado("A vingança dos que nao foram", "67", "japones")
+from models.video import Video
+from models.podcast import Podcast
+from models.textonarrado import TextoNarrado
 
 
-minhaplat.adicionarMidia(video)
+class Plataforma:
 
-minhaplat.adicionarMidia(podcast)
+    def __init__(self, nome):
+        self.nome = nome
+        self.listaDeMidia = []
 
-minhaplat.adicionarMidia(textonarrado)
+    def adicionarMidia(self, midia):
+        self.listaDeMidia.append(midia)
 
-minhaplat.listaMidia()
-minhaplat.reproduzirTodas()
+    def listaMidia(self):
+
+        print(f"\n--- MÍDIAS DA {self.nome} ---")
+
+        if len(self.listaDeMidia) == 0:
+            print("Nenhuma mídia cadastrada.")
+            return
+
+        for midia in self.listaDeMidia:
+            midia.mostrarInfo()
+
+    def reproduzirTodas(self):
+
+        print("\n--- REPRODUZINDO TODAS ---")
+
+        if len(self.listaDeMidia) == 0:
+            print("Nenhuma mídia cadastrada.")
+            return
+
+        for midia in self.listaDeMidia:
+            midia.reproduzir()
+
+
+
+plataforma = Plataforma("Educação Online")
+
+while True:
+
+    mostrarMenu()
+
+    opcao = input("Escolha uma opção: ")
+
+    match opcao:
+
+        case "1":
+
+            titulo = input("Título do vídeo: ")
+            duracao = input("Duração: ")
+            resolucao = input("Resolução: ")
+
+            video = Video(titulo, duracao, resolucao)
+
+            plataforma.adicionarMidia(video)
+
+            print("Vídeo adicionado com sucesso!")
+
+        case "2":
+
+            titulo = input("Título do podcast: ")
+            duracao = input("Duração: ")
+            apresentador = input("Apresentador: ")
+
+            podcast = Podcast(
+                titulo,
+                duracao,
+                apresentador
+            )
+
+            plataforma.adicionarMidia(podcast)
+
+            print("Podcast adicionado com sucesso!")
+
+        case "3":
+
+            titulo = input("Título do texto narrado: ")
+            duracao = input("Duração: ")
+            idioma = input("Idioma: ")
+
+            texto = TextoNarrado(
+                titulo,
+                duracao,
+                idioma
+            )
+
+            plataforma.adicionarMidia(texto)
+
+            print("Texto narrado adicionado com sucesso!")
+
+        case "4":
+            plataforma.listaMidia()
+
+        case "5":
+            plataforma.reproduzirTodas()
+
+        case "0":
+            print("Sistema encerrado.")
+            break
+
+        case _:
+            print("Opção inválida!")
